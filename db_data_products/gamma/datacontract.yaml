@@ -1,0 +1,69 @@
+dataContractSpecification: 0.9.3
+id: urn:datacontract:gamma:stuff
+info:
+  title: Stuff
+  version: 1.0.0
+  description: |
+    The data model contains an id and a string
+  owner: gamma
+  contact:
+    name: John Doe (Data Product Owner)
+servers:
+  development:
+    type: databricks
+    host: dbc-5829e67d-6e9e.cloud.databricks.com
+    catalog: dais2025
+    schema: gamma
+terms:
+  usage: >
+    Data can be used for reports, analytics and machine learning use cases.
+  limitations: >
+    Not suitable for real-time use cases.
+  billing: free
+  noticePeriod: P3M
+models:
+  things:
+    description: Nothing interesting here
+    type: table
+    fields:
+      id:
+        description: The id
+        type: bigint
+        unique: true
+        required: true
+      alpha_id:
+        description: The id from the alpha table
+        type: bigint
+        unique: true
+        required: true
+      beta_id:
+        description: The id from the alpha table
+        type: bigint
+        unique: true
+        required: true
+      content:
+        description: It is a string
+        type: string
+      created:
+        description: When the magic happened.
+        type: timestamp
+servicelevels:
+  availability:
+    percentage: 99.9%
+  retention:
+    period: 1 year
+  freshness:
+    threshold: 25 hours
+    timestampField: stuff.created
+examples:
+  - type: csv
+    data: |
+      id,content,processing_timestamp
+      1,it is raining,2024-02-25T16:16:30.171798
+      2,it might be raining,2024-02-25T16:16:30.171798
+      3,rain is not the plan,2024-02-25T16:16:30.171798
+# quality:
+#   type: SodaCL
+#   specification:
+#     check_row_count:
+#       - row_count > 10

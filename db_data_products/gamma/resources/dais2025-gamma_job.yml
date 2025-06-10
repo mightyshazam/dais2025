@@ -1,0 +1,27 @@
+resources:
+  jobs:
+    execute:
+      name: dais2025_gamma
+      schedule:
+        # Run hourly
+        quartz_cron_expression: '0 0 0/4 1/1 * ? *'
+        timezone_id: EST
+
+      environments:
+        - environment_key: default
+          spec:
+            client: '1'
+            dependencies:
+              - datacontract-cli
+
+      tasks:
+        - task_key: main_task
+          environment_key: default
+          spark_python_task:
+            python_file: ../src/gamma/main.py
+        - task_key: datacontract_test_task
+          depends_on:
+            - task_key: main_task
+          notebook_task:
+            notebook_path: ../src/datacontract_test.ipynb
+      

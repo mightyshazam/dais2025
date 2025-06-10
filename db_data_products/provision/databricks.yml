@@ -1,0 +1,31 @@
+# This is a Databricks asset bundle definition for dais2025.
+# The Databricks extension requires databricks.yml configuration file.
+# See https://docs.databricks.com/dev-tools/bundles/index.html for documentation.
+
+bundle:
+  name: dais2025-provision
+
+include:
+  - resources/*.yml
+
+variables:
+  warehouse_id:
+    description: The warehouse to use
+  catalog:
+    description: The catalog to use
+
+targets:
+  dev:
+    mode: development
+    default: true
+    workspace:
+      host: https://dbc-adaf54b0-e3e3.cloud.databricks.com
+    variables:
+      warehouse_id: a2bacdfe41f7f766
+      catalog: dais2025
+
+  ## Optionally, there could be 'staging' or 'prod' targets here.
+  #
+  # prod:
+  #   workspace:
+  #     host: https://dbc-adaf54b0-e3e3.cloud.databricks.com

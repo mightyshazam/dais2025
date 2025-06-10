@@ -1,0 +1,26 @@
+resources:
+  jobs:
+    dais2025-provision_job:
+      name: dais2025_provision
+      parameters:
+        - name: catalog
+          default: ${var.catalog}
+      tasks:
+        - task_key: alpha
+          sql_task:
+            warehouse_id: ${var.warehouse_id}
+            file:
+              path: ../src/alpha.sql
+
+        - task_key: beta
+          sql_task:
+            warehouse_id: ${var.warehouse_id}
+            file:
+              path: ../src/beta.sql
+
+        - task_key: gamma
+          sql_task:
+            warehouse_id: ${var.warehouse_id}
+            file:
+              path: ../src/gamma.sql
+      

@@ -1,0 +1,9 @@
+USE CATALOG {{catalog}};
+CREATE SCHEMA IF NOT EXISTS alpha;
+USE alpha;
+
+CREATE TABLE IF NOT EXISTS things (
+    id BIGINT NOT NULL,
+    content STRING NOT NULL,
+    created TIMESTAMP
+);
